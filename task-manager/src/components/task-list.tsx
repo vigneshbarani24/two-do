@@ -7,18 +7,24 @@ import type { Task, TaskStatus } from "@/lib/types";
 
 interface TaskListProps {
   tasks: Record<string, Task>;
-  onEdit: (task: Task) => void;
   onDelete: (id: string) => void;
   onStatusChange: (id: string, status: TaskStatus) => void;
   onAddChild: (parentId: string) => void;
+  onToggleDone: (task: Task) => void;
+  onTitleChange: (id: string, title: string) => void;
+  onDescriptionChange: (id: string, description: string) => void;
+  onMove: (task: Task) => void;
 }
 
 export function TaskList({
   tasks,
-  onEdit,
   onDelete,
   onStatusChange,
   onAddChild,
+  onToggleDone,
+  onTitleChange,
+  onDescriptionChange,
+  onMove,
 }: TaskListProps) {
   const topLevel = getTopLevelTasks(tasks);
 
@@ -45,10 +51,13 @@ export function TaskList({
           key={t.id}
           task={t}
           tasks={tasks}
-          onEdit={onEdit}
           onDelete={onDelete}
           onStatusChange={onStatusChange}
           onAddChild={onAddChild}
+          onToggleDone={onToggleDone}
+          onTitleChange={onTitleChange}
+          onDescriptionChange={onDescriptionChange}
+          onMove={onMove}
         />
       ))}
     </div>
