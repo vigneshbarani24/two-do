@@ -8,20 +8,26 @@ interface TaskTreeProps {
   task: Task;
   tasks: Record<string, Task>;
   depth?: number;
-  onEdit: (task: Task) => void;
   onDelete: (id: string) => void;
   onStatusChange: (id: string, status: TaskStatus) => void;
   onAddChild: (parentId: string) => void;
+  onToggleDone: (task: Task) => void;
+  onTitleChange: (id: string, title: string) => void;
+  onDescriptionChange: (id: string, description: string) => void;
+  onMove: (task: Task) => void;
 }
 
 export function TaskTree({
   task,
   tasks,
   depth = 0,
-  onEdit,
   onDelete,
   onStatusChange,
   onAddChild,
+  onToggleDone,
+  onTitleChange,
+  onDescriptionChange,
+  onMove,
 }: TaskTreeProps) {
   const children = getChildren(tasks, task.id);
   const parentTitle =
@@ -40,10 +46,13 @@ export function TaskTree({
       <TaskItem
         task={task}
         parentTitle={parentTitle}
-        onEdit={onEdit}
         onDelete={onDelete}
         onStatusChange={onStatusChange}
         onAddChild={onAddChild}
+        onToggleDone={onToggleDone}
+        onTitleChange={onTitleChange}
+        onDescriptionChange={onDescriptionChange}
+        onMove={onMove}
       />
       {children.length > 0 && (
         <div className="mt-2 space-y-2">
@@ -53,10 +62,13 @@ export function TaskTree({
               task={child}
               tasks={tasks}
               depth={depth + 1}
-              onEdit={onEdit}
               onDelete={onDelete}
               onStatusChange={onStatusChange}
               onAddChild={onAddChild}
+              onToggleDone={onToggleDone}
+              onTitleChange={onTitleChange}
+              onDescriptionChange={onDescriptionChange}
+              onMove={onMove}
             />
           ))}
         </div>

@@ -5,6 +5,7 @@ export interface Task {
   title: string;
   description: string;
   status: TaskStatus;
+  previousStatus?: TaskStatus;
   parentId: string | null;
   createdAt: number;
 }
@@ -35,7 +36,12 @@ export type Action =
       type: "UPDATE_TASK";
       payload: {
         id: string;
-        updates: Partial<Pick<Task, "title" | "description" | "status">>;
+        updates: Partial<
+          Pick<
+            Task,
+            "title" | "description" | "status" | "previousStatus" | "parentId"
+          >
+        >;
       };
     }
   | { type: "DELETE_TASK"; payload: { id: string } }
