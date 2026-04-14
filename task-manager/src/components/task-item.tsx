@@ -10,6 +10,7 @@ import { Textarea } from "@/components/ui/textarea";
 import {
   DropdownMenu,
   DropdownMenuContent,
+  DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
@@ -230,7 +231,10 @@ export function TaskItem({
             )}
 
             <div className="mt-1.5 flex items-center gap-2 flex-wrap">
-              <span className="text-xs text-muted-foreground">
+              <span
+                className="text-xs text-muted-foreground"
+                suppressHydrationWarning
+              >
                 Created {formatRelativeTime(task.createdAt)}
               </span>
               {parentTitle && (
@@ -272,17 +276,19 @@ export function TaskItem({
                 <MoreHorizontal className="h-4 w-4" />
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
-                <DropdownMenuLabel>Set status</DropdownMenuLabel>
-                <DropdownMenuSeparator />
-                {(Object.keys(STATUS_LABEL) as TaskStatus[]).map((s) => (
-                  <DropdownMenuItem
-                    key={s}
-                    onClick={() => onStatusChange(task.id, s)}
-                    disabled={s === task.status}
-                  >
-                    {STATUS_LABEL[s]}
-                  </DropdownMenuItem>
-                ))}
+                <DropdownMenuGroup>
+                  <DropdownMenuLabel>Set status</DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  {(Object.keys(STATUS_LABEL) as TaskStatus[]).map((s) => (
+                    <DropdownMenuItem
+                      key={s}
+                      onClick={() => onStatusChange(task.id, s)}
+                      disabled={s === task.status}
+                    >
+                      {STATUS_LABEL[s]}
+                    </DropdownMenuItem>
+                  ))}
+                </DropdownMenuGroup>
               </DropdownMenuContent>
             </DropdownMenu>
             <Button

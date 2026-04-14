@@ -152,7 +152,7 @@ export function TaskManager() {
         <div className="mx-auto max-w-4xl px-4 py-5 flex items-center justify-between gap-4">
           <div>
             <h1 className="text-xl font-semibold tracking-tight">
-              Task Manager
+              Two-Do : Collaborative Task Manager with Time Travel
             </h1>
             <p className="text-sm text-muted-foreground mt-0.5">
               {counts.total} task{counts.total === 1 ? "" : "s"}
