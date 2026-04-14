@@ -13,8 +13,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Task Manager",
-  description: "Collaborative task manager with time-travel undo/redo.",
+  title: "Two-Do — Collaborative Task Manager with Time Travel",
+  description:
+    "Client-side task manager with a time-travel slider. Delete a parent, children stay.",
 };
 
 export default function RootLayout({
